@@ -5,7 +5,7 @@ from jsonschema.exceptions import SchemaError
 user_schema = {
     "type" : "object",
     "properties" : {
-        "user_id" : {"type" : "number"},
+        "_id" : {"type" : "number"},
         "name" : {"type" : "string"},
         "email": {
             "type":"string"
@@ -28,7 +28,7 @@ def validate_user(data):
     except ValidationError as e:
         return {'ok': False, 'message': e}
     except SchemaError as e:
-        return {'ok': False, 'message': "This is the error"}
+        return {'ok': False, 'message': "schema error!"}
     return {'ok': True, 'data': data }
 
     

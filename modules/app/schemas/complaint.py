@@ -29,7 +29,7 @@ complaint_schema = {
             "type" : "string",
             "format" : "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"
         },
-        "date-created" : {
+        "timestamp" : {
             "type" : "string",
             "format" : "date-time"
         },
@@ -40,7 +40,14 @@ complaint_schema = {
             "type" : "string"
         }
     },
-    "required" : ["creator_name", "creator_email", "status", "about_brand", "telephone", "description"],
+    "required" : ["creator_name"
+                  , "creator_email"
+                  , "status"
+                  , "about_brand"
+                  , "telephone"
+                  , "description"
+                  , "title"
+                 ],
     "additionalProperties" : False 
 }
 
@@ -81,7 +88,7 @@ complaint_update_schema = {
                 },
                 "telephone" : {
                     "type" : "string",
-                    "format" : "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"
+                    # "format" : "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"
                 },
                 "date-created" : {
                     "type" : "string",
@@ -103,9 +110,9 @@ def validate_complaint(data):
     try:
         validate(data, complaint_schema)
     except ValidationError as e :
-        return {'ok': False, 'message': e}
+        return {'ok': False, 'message': "cannot validate complaint"}
     except SchemaError as e :
-        return {'ok': False, 'message': e}
+        return {'ok': False, 'message': "schema of complaint is malformed!"}
     return {'ok': True, 'data' : data}
 
 
