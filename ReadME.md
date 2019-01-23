@@ -10,3 +10,8 @@
 * If (this)[http://0.0.0.0:4000/] says hello world! the server is up and running
 
 * check "routes_used.md" for possible routes to interact with
+
+* Moreover, if you want to run both frontend and backend, you can do 
+
+   - yarn run build
+   - docker-compose up --build
